@@ -16,7 +16,6 @@ except ImportError:
     import json
 import uuid
 
-import bottle
 
 # Import ioflo libs
 from ioflo.aid.sixing import *
@@ -26,7 +25,7 @@ from ioflo.aid.byting import hexify, unhexify
 from ioflo.aid import getConsole
 
 
-#from  ..aid import bottle
+from  ..help import bottle
 
 console = getConsole()
 
@@ -78,8 +77,6 @@ def loadTest(app, store):
         bottle.response.set_header('content-type', 'text/plain')
         content = "Web app file is located at %s" % os.path.dirname(os.path.abspath(__file__))
         siteMap = ""
-
-        #currentApp = bottle.app()  # same as app
 
         for route in app.routes:
             siteMap = "%s%s%s %s" % (siteMap, '\n' if siteMap else '', route.rule, route.method)

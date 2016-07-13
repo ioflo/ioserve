@@ -14,7 +14,6 @@ try:
 except ImportError:
     import json
 
-#import bottle
 
 # Import ioflo libs
 from ioflo.aid.sixing import *
@@ -29,7 +28,7 @@ from ioflo.aid import getConsole
 console = getConsole()
 
 from ioserve.end import ending
-#from ioserve.help import bottle
+from ioserve.help import bottle
 
 def setUpModule():
     pass

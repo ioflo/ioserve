@@ -14,7 +14,6 @@ try:
 except ImportError:
     import json
 
-import bottle
 
 # Import ioflo libs
 from ioflo.aid.sixing import *
@@ -25,7 +24,7 @@ from ioflo.aio.http import Valet
 from ioflo.base import doify
 
 from ..end import ending
-#from ..help import bottle
+from ..help import bottle
 
 console = getConsole()
 
@@ -40,7 +39,10 @@ frame server
 
 """
 
-@doify('IoserveServerOpen', ioinits=odict(valet="", mock="", test=""))
+@doify('IoserveServerOpen', ioinits=odict(valet="",
+                                          port=odict(inode="", ival=8080),
+                                          mock="",
+                                          test=""))
 def ioserveServerOpen(self, buffer=False, **kwa):
     """
     Setup and open a rest server
@@ -63,11 +65,13 @@ def ioserveServerOpen(self, buffer=False, **kwa):
         result = wlog.reopen()
     else:
         wlog = None
+
+    port = int(self.port.value)
     app = bottle.app() # create bottle app
     test = True if self.test.value else False
     mock = True if self.mock.value else False
     ending.loadAll(app, self.store, mock=mock, test=test)
-    self.valet.value = Valet(port=8080,
+    self.valet.value = Valet(port=port,
                              bufsize=131072,
                              wlog=wlog,
                              store=self.store,
