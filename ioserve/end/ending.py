@@ -139,7 +139,7 @@ def loadTest(app, store):
         """
         Create test server sent event stream that sends count events
         """
-        timer = StoreTimer(store, duration=1.0)
+        timer = StoreTimer(store, duration=2.0)
         bottle.response.set_header('Content-Type',  'text/event-stream') #text
         bottle.response.set_header('Cache-Control',  'no-cache')
         # Set client-side auto-reconnect timeout, ms.
