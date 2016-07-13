@@ -41,7 +41,6 @@ frame server
 
 @doify('IoserveServerOpen', ioinits=odict(valet="",
                                           port=odict(inode="", ival=8080),
-                                          mock="",
                                           test=""))
 def ioserveServerOpen(self, buffer=False, **kwa):
     """
@@ -61,7 +60,7 @@ def ioserveServerOpen(self, buffer=False, **kwa):
         do ioserve server open at enter
     """
     if buffer:
-        wlog = WireLog(buffify=True,  same=True)
+        wlog = WireLog(buffify=True, same=True)
         result = wlog.reopen()
     else:
         wlog = None
@@ -69,8 +68,7 @@ def ioserveServerOpen(self, buffer=False, **kwa):
     port = int(self.port.value)
     app = bottle.app() # create bottle app
     test = True if self.test.value else False
-    mock = True if self.mock.value else False
-    ending.loadAll(app, self.store, mock=mock, test=test)
+    ending.loadAll(app, self.store, test=test)
     self.valet.value = Valet(port=port,
                              bufsize=131072,
                              wlog=wlog,

@@ -29,23 +29,16 @@ from  ..help import bottle
 
 console = getConsole()
 
-def loadAll(app, store, mock=False, test=False, mockPort=None):
+def loadAll(app, store, test=False):
     """
         Load endpoints into wsgi app with store reference
         This function essentially wraps the endpoint definitions with a scope
         that includes a reference to the data store
     """
-    if mock:  # override defaults to use mock endpoints
-        port = 8080 if mockPort is None else mockPort
-
     if test:
         loadTest(app, store)
 
     loadEnds(app, store)
-
-    if mock:
-        pass  # load mock endpoints here
-
     loadCors(app)
     loadErrors(app)
 
