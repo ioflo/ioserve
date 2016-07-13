@@ -35,7 +35,7 @@ if SETUP_DIRNAME != '':
 
 SETUP_DIRNAME = os.path.abspath(SETUP_DIRNAME)
 
-METADATA = os.path.join(SETUP_DIRNAME, 'sentroid', '__metadata__.py')
+METADATA = os.path.join(SETUP_DIRNAME, 'ioserve', '__metadata__.py')
 # Load the metadata using exec() so we don't trigger an import of .__init__
 exec(compile(open(METADATA).read(), METADATA, 'exec'))
 

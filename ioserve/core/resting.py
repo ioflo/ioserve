@@ -25,7 +25,7 @@ from ioflo.aio.http import Valet
 from ioflo.base import doify
 
 from ..end import ending
-from ..help import bottle
+#from ..help import bottle
 
 console = getConsole()
 

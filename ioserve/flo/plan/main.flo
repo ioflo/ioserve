@@ -1,0 +1,32 @@
+# Main Flow
+
+house main
+    init .main.timeout with 30.0
+    init .main.forever with true  # run forever if true else time out after .main.timeout
+
+
+  framer setup be active first setup
+    frame setup
+      go startup
+
+    frame startup
+      print Starting Server
+      bid start server
+      go next
+
+
+    frame forever
+      go timeout if not .main.forever
+
+    frame timeout
+      go stop if elapsed >= .main.timeout
+
+    frame stop
+      bid stop all
+
+framer server be inactive first server via .main.server
+   frame server
+      do ioserve server open at enter
+      do ioserve server service
+      do ioserve server close at exit
+
